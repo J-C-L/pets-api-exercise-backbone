@@ -43,7 +43,7 @@ var PetListView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click .add-task ': 'createTask',
+    'click .add-pet': 'createPet',
     'click .cancel-add': 'clearInput'
   },
 
@@ -68,12 +68,39 @@ var PetListView = Backbone.View.extend({
     var html = this.petInfoTemplate({pet: pet.toJSON()});
     this.$('#pet').html(html);
   },
+
+  getInput: function() {
+    var pet = {
+        name: this.input.name.val(),
+        age: this.input.age.val(),
+        breed: this.input.breed.val()
+    };
+    return pet;
+  },
+
+  createPet: function(event) {
+     event.preventDefault();
+    // Get the input data from the form and turn it into a task
+    var rawPet = this.getInput();
+    console.log(rawPet.name);
+    // alert("You have added a pet named: "+rawPet.name);
+
+
+    // Add the task to our collection
+    // this.model.add(rawPet); WITHOUT API
+    this.model.create(rawPet);
+
+    // Clear the input form so the user can add another pet
+    this.clearInput();
+  },
+
+
   clearInput: function(event) {
-  console.log("clearInput called!");
-  this.input.name.val('');
-  this.input.age.val('');
-  this.input.breed.val('');
-}
+    console.log("clearInput called!");
+    this.input.name.val('');
+    this.input.age.val('');
+    this.input.breed.val('');
+  }
 
 
 });

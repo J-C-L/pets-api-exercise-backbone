@@ -10,9 +10,7 @@ var PetView = Backbone.View.extend({
     var html = this.template({pet: this.model.toJSON()} );
     this.$el.html(html);
 
-    console.log("IndivRender");
-
-
+    // console.log("IndivRender");
 
     // Re-attach DOM event listeners to our brand-spankin-new HTML
     // this.delegateEvents();
