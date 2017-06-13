@@ -1,41 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/_settings.css">
-    <link rel="stylesheet" type="text/css" href="css/foundation.css">
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Fluffers</title>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/_settings.css">
+  <link rel="stylesheet" type="text/css" href="css/foundation.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <title>Fluffers</title>
+</head>
+<body>
 
-    <header>
-      <h1>Pets!</h1>
-    </header>
-    <main>
-      <section id='pet'></section>
-      <section id='pet-list'></section>
-      <section id='new-pet'></section>
-    </main>
+  <header>
+    <h1>Pets!</h1>
+  </header>
+  <main>
 
-    <!-- Templates -->
+    <form class="new-pet-form">
 
-    <script id="pet-card-template" type="text/template">
-      <li><%- pet.name %></li>
-    </script>
+      <label for="name">Name</label>
+      <input type="text" name="name"></input>
 
-    <script id="pet-info-template" type="text/template">
-      <h3>Name: <%- pet.name %></h3>
-      <h4>Age: <%- pet.age %></h4>
-      <h4>Breed: <%- pet.breed %></h4>
-      <% if(pet.vaccinated){ %>
-        <input type="checkbox" name="vaccinated" checked="checked">
+
+      <label for="age">Age</label>
+      <input type="text" name="age"></input>
+
+      <label for="breed">Breed</label>
+      <input type="text" name="breed"></input>
+
+      <button type="submit" class="add-task success button">Add Pet</button>
+      <button type="button" class="cancel-add alert button">Cancel</button>
+
+    </form>
+
+    <section id='pet'></section>
+    <section id='pet-list'>
+      <ul class="pet-cards"> </ul>
+    </section>
+    <section id='new-pet'></section>
+  </main>
+
+  <!-- Templates -->
+
+  <script id="pet-card-template" type="text/template">
+    <li><%- pet.name %></li>
+  </script>
+
+  <script id="pet-info-template" type="text/template">
+    <h3>Name: <%- pet.name %></h3>
+    <h4>Age: <%- pet.age %></h4>
+    <h4>Breed: <%- pet.breed %></h4>
+    <% if(pet.vaccinated){ %>
+      <input type="checkbox" name="vaccinated" checked="checked">
       <% }else{ %>
         <input type="checkbox" name="vaccinated">
-      <% } %>
-    </script>
+        <% } %>
+      </script>
 
-    <script src="/app.bundle.js"></script>
+      <script src="/app.bundle.js"></script>
 
-  </body>
-  </html>
+    </body>
+    </html>
