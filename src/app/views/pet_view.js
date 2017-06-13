@@ -13,21 +13,30 @@ var PetView = Backbone.View.extend({
     // console.log("IndivRender");
 
     // Re-attach DOM event listeners to our brand-spankin-new HTML
-    // this.delegateEvents();
+    this.delegateEvents();
 
     // Enable chained calls
     return this;
   },
 
   events: {
-    "click": "onClick"
-    // "click .delete-button": "deleteHandler",
+    "click .show-details": "onClick",
+    "click .delete-pet": "deletePet"
     // "dblclick": "editHandler"
   },
   onClick: function(event) {
     console.log("onClick called");
-    this.trigger('petClicked', this.model);
+    this.trigger('showDetailsClicked', this.model);
+  },
+
+deletePet: function(event) {
+  console.log("delePet called!");
+  if (window.confirm("Are you sure you want to delete this pet?")) {
+    console.log("going to delete it!");
+    this.model.destroy();
   }
+},
+
 
 });
 

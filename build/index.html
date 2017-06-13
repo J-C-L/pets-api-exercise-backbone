@@ -41,7 +41,11 @@
   <!-- Templates -->
 
   <script id="pet-card-template" type="text/template">
-    <li><%- pet.name %></li>
+    <li><%- pet.name %>
+  <button type="button" class="show-details tiny button">Show Details</button>
+  <button type="button" class="delete-pet alert tiny button">Delete Pet</button>
+
+    </li>
   </script>
 
   <script id="pet-info-template" type="text/template">

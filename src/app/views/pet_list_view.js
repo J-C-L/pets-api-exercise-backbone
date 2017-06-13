@@ -29,6 +29,7 @@ var PetListView = Backbone.View.extend({
 
     this.listenTo(this.model, 'add', this.addPet);
     this.listenTo(this.model, "update", this.render);
+    this.listenTo(this.model, 'remove', this.removePet);
   },
 
   render: function() {
@@ -56,7 +57,7 @@ var PetListView = Backbone.View.extend({
       cardTemplate: this.cardTemplate,
     });
 
-    this.listenTo(petView, 'petClicked', this.showPetDetals);
+    this.listenTo(petView, 'showDetailsClicked', this.showPetDetals);
 
     // Add the pet to our pet list
     this.petViewList.push(petView);
@@ -79,28 +80,38 @@ var PetListView = Backbone.View.extend({
   },
 
   createPet: function(event) {
+    //prevents default form submit behavior/routing
      event.preventDefault();
+
     // Get the input data from the form and turn it into a task
     var rawPet = this.getInput();
-    console.log(rawPet.name);
-    // alert("You have added a pet named: "+rawPet.name);
+    console.log(rawPet);
 
 
     // Add the task to our collection
     // this.model.add(rawPet); WITHOUT API
     this.model.create(rawPet);
 
+    alert("You have added a pet named: "+rawPet.name);
     // Clear the input form so the user can add another pet
     this.clearInput();
   },
-
 
   clearInput: function(event) {
     console.log("clearInput called!");
     this.input.name.val('');
     this.input.age.val('');
     this.input.breed.val('');
-  }
+  },
+  removePet: function(pet) {
+  var filteredList = [];
+  this.petViewList.forEach(function(petView) {
+    if (petView.model != pet) {
+      filteredList.push(petView);
+    }
+  });
+  this.petViewList = filteredList;
+},
 
 
 });
